@@ -1,77 +1,66 @@
-import React from 'react';
 import { Card } from 'react-bootstrap';
-import Item1 from '../assets/item 1.png';
-import Item2 from '../assets/item 2.png';
-import Item3 from '../assets/item 3.png';
-import Item4 from '../assets/item 4.png';
+// import dataProduct from '../dataProducts/product';
+// import Item1 from '../assets/item 1.png';
+// import Item2 from '../assets/item 2.png';
+// import Item3 from '../assets/item 3.png';
+// import Item4 from '../assets/item 4.png';
 
+import React, { Component } from 'react';
+import { API_URL } from '../utils/constants';
+import Axios from 'axios';
+import { numberWithCommas } from '../utils/utils';
 
-export default function Item() {
+export default class DisplayItem extends Component {
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+         items: [],
+      }
+    }
+
+    componentDidMount() {
+        Axios
+        .get(API_URL + "products")
+        .then(res => {
+            console.log("Response :", res);
+            const items = res.data;
+            this.setState({ items });
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+  render() {
+    const { items } = this.state
     return (
         <>
+
+
         <div style={styles.cardcontainer}>
+            {items && items.map((items, index) => (
+
         <Card style={{ width: '18rem',  marginRight: '28px' }} >
-            <Card.Img variant="top" src={Item1} />
+            <Card.Img variant="top" src={"assets/" + items.image} />
             <Card.Body style={styles.cardBody}>
-            <Card.Title style={styles.cardTitle}>Card Title</Card.Title>
+            <Card.Title style={styles.cardTitle}>{items.name}</Card.Title>
             <Card.Text style={styles.cardText}>
-                Rp.299.000
+                {numberWithCommas (items.price)}
             </Card.Text>
             <Card.Text style={styles.cardText}>
-                Stock : 200
+                Stock: {items.stock}
             </Card.Text>
             </Card.Body>
         </Card>
 
-        <Card style={{ width: '18rem',  marginRight: '28px' }} >
-            <Card.Img variant="top" src={Item3} />
-            <Card.Body style={styles.cardBody}>
-            <Card.Title style={styles.cardTitle}>Card Title</Card.Title>
-            <Card.Text style={styles.cardText}>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </Card.Text>
-            <Card.Text style={styles.cardText}>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </Card.Text>
-            </Card.Body>
-        </Card>
+        ))}
 
-        <Card style={{ width: '18rem',  marginRight: '28px' }} >
-            <Card.Img variant="top" src={Item2} />
-            <Card.Body style={styles.cardBody}>
-            <Card.Title style={styles.cardTitle}>Card Title</Card.Title>
-            <Card.Text style={styles.cardText}>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </Card.Text>
-            <Card.Text style={styles.cardText}>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </Card.Text>
-            </Card.Body>
-        </Card>
-
-        <Card style={{ width: '18rem',  marginRight: '28px' }} >
-            <Card.Img variant="top" src={Item4} />
-            <Card.Body style={styles.cardBody}>
-            <Card.Title style={styles.cardTitle}>Card Title</Card.Title>
-            <Card.Text style={styles.cardText}>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </Card.Text>
-            <Card.Text style={styles.cardText}>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-            </Card.Text>
-            </Card.Body>
-        </Card>
-        
         </div>
         
         </>
     )
+  }
 }
 
 const styles = {

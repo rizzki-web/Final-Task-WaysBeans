@@ -1,36 +1,67 @@
-import React from 'react';
 import {Button} from 'react-bootstrap';
 import NavbarTab from '../components/Navbar';
-import Item1 from '../assets/item 1.png';
+// import Item1 from '../assets/item 1.png';
+// import dataProduct from '../dataProducts/product';
 
-export default function DetailProduk() {
-  return (
-    <div style={{height: '100vh'}}>
-    <NavbarTab />
+import React, { Component } from 'react';
+import { API_URL } from '../utils/constants';
+import Axios from 'axios';
 
-    <div style={styles.detailContainer}>
-        <div>
-            <img src={Item1} style={styles.imgDetail} alt=''/>
-        </div>
+export default class DetailProduk extends Component {
+
+    constructor(props) {
+        super(props)
+      
+        this.state = {
+           lists: [],
+        }
+      }
+
+      componentDidMount() {
+        Axios
+        .get(API_URL + "products")
+        .then(res => {
+            console.log("Response :", res);
+            const lists = res.data;
+            this.setState({ lists });
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+
+  render() {
+    const { lists } = this.state
+    return (
+        <div style={{height: '100vh'}}>
+        <NavbarTab />
+    
+        {lists && lists.map((lists, index) => (
+        <div style={styles.detailContainer}>
         
-
-        <div style={styles.descProduk}>
-            <h1 style={{fontSize: '48px', color: 'rgba(97, 61, 43, 1)', marginBottom: '3px'}}>GUATEMALA Beans</h1>
-            <p style={{fontSize: '14px', color: 'rgba(151, 74, 74, 1)', marginBottom: '35px'}}>Stock: 500</p>
-            <p style={{fontSize: '16px', marginBottom: '51px', textAlign: 'justify'}}>Hampir semua referensi sepakat mengatakan bahwa kopi pertama kali ditemukan di Ethiopia, 
-                meskipun ada juga beberapa protes yang menyatakan bahwa Coffea arabica sebenarnya muncul 
-                pertama kali di bagian selatan Sudan. Karena para gembala Ethiopia adalah manusia pertama 
-                yang mengonsumsi kopi—walau saat itu mereka baru mengonsumsi buah/cherry-nya saja, maka 
-                gagasan tentang “Ethiopia sebagai tempat asal kopi” pun semakin kuat.</p>
-
-            <p style={{fontSize: '22px', color: 'rgba(151, 74, 74, 1)', textAlign: 'right', marginBottom: '35px' }}>Rp.300.900</p>
-
-                <Button style={styles.btn}>Primary</Button>
+            <div>
+                <img src={"assets/" + lists.image} style={styles.imgDetail} alt=''/>
+            </div>
+            
+    
+            <div style={styles.descProduk}>
+                
+                <h1 style={{fontSize: '48px', color: 'rgba(97, 61, 43, 1)', marginBottom: '3px'}}>{lists.name}</h1>
+                <p style={{fontSize: '14px', color: 'rgba(151, 74, 74, 1)', marginBottom: '35px'}}>Stock:{lists.stock}</p>
+                <p style={{fontSize: '16px', marginBottom: '51px', textAlign: 'justify'}}>{lists.desc}</p>
+    
+                <p style={{fontSize: '22px', color: 'rgba(151, 74, 74, 1)', textAlign: 'right', marginBottom: '35px' }}>{lists.price}</p>
+    
+                    <Button style={styles.btn}>Primary</Button>
+            </div>
+             
         </div>
-    </div>
-        
-    </div>
-  )
+        ))}
+            
+        </div>
+    )
+  }
 }
 
 const styles = {

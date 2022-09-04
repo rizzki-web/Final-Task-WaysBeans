@@ -1,12 +1,39 @@
-import React from 'react';
 import Item from '../assets/item 1.png';
 import Trash from '../assets/trash.png';
 import { Button } from 'react-bootstrap';
 
+import React, { Component } from 'react';
+import { API_URL } from '../utils/constants';
+import Axios from 'axios';
 
-export default function MyCart() {
-  return (
-    <div>
+export default class MyCart extends Component {
+
+    constructor(props) {
+        super(props)
+      
+        this.state = {
+           carts: [],
+           
+        }
+      }
+
+      componentDidMount() {
+        Axios
+        .get(API_URL + "products")
+        .then(res => {
+            console.log("Response :", res);
+            const lists = res.data;
+            this.setState({ lists });
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+  render() {
+    const { lists } = this.state
+    return (
+        <div>
 
         <div style={styles.cartContainer}>
 
@@ -85,8 +112,13 @@ export default function MyCart() {
         
     
     </ div>
-  )
+    )
+  }
 }
+
+
+
+
 
 const styles = {
     cartContainer: {

@@ -1,0 +1,118 @@
+{
+
+  "dashboards": [
+    {
+      "id":1,
+        "name":"Bildan Jetskyz",
+        "address":"Bogor",
+        "postcode": "11225",
+        "order": "GUETEMALA BEANS",
+        "status": "Waiting" 
+    },
+    {
+      "id":2,
+        "name":"Muhammad rizzki",
+        "address":"kelapa dua",
+        "postcode": "11550",
+        "order": "RWANDA BEANS",
+        "status": "On the Way" 
+    },
+    {
+      "id":3,
+        "name":"Alan suryajana",
+        "address":"Binomo",
+        "postcode": "32125",
+        "order": "ETHIOPIA BEANS",
+        "status": "Cancel" 
+    },
+    {
+      "id":1,
+        "name":"Ewing HD",
+        "address":"Ciledug",
+        "postcode": "22003",
+        "order": "NICARAGUA BEANS",
+        "status": "Success" 
+    }
+  ],
+
+  "products": [
+    {
+        "id":1,
+        "name": "GUETEMALA BEANS",
+        "stock": 99,
+        "price": "Rp.300900",
+        "desc": "okesip",
+        "image": "item_1.png"
+    },
+
+    {
+      "id":2,
+        "name": "RWANDA BEANS",
+        "stock": 99,
+        "price": "Rp.300900",
+        "desc": "okesip",
+        "image": "item_2.png"
+    },
+    {
+      "id":3,
+        "name": "ETHIPIA BEANS",
+        "stock": 99,
+        "price": "Rp.300900",
+        "desc": "okesip",
+        "image": "item_3.png"
+    },
+    {
+      "id":4,
+        "name": "NICALAGUA BEANS",
+        "stock": 99,
+        "price": "Rp.300900",
+        "desc": "okesip",
+        "image": "item_4.png"
+    }
+    
+  ],
+  "carts": [],
+  "payments": [
+    {
+      "total_bayar": 60000,
+      "menus": [
+        {
+          "jumlah": 2,
+          "total_harga": 32000,
+          "product": {
+            "id": 1,
+            "kode": "K-01",
+            "nama": "Sate Ayam",
+            "harga": 16000,
+            "is_ready": true,
+            "gambar": "sate-ayam.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "keterangan": "Semuanya Pedas",
+          "id": 1
+        },
+        {
+          "jumlah": 2,
+          "total_harga": 28000,
+          "product": {
+            "id": 2,
+            "kode": "K-02",
+            "nama": "Nasi Goreng Telur",
+            "harga": 14000,
+            "is_ready": true,
+            "gambar": "nasi-goreng-telor.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          },
+          "id": 3
+        }
+      ],
+      "id": 1
+    }
+  ]
+}
