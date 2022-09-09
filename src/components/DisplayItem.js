@@ -9,6 +9,10 @@ import React, { Component } from 'react';
 import { API_URL } from '../utils/constants';
 import Axios from 'axios';
 import { numberWithCommas } from '../utils/utils';
+import {Link} from 'react-router-dom';
+
+
+
 
 export default class DisplayItem extends Component {
     constructor(props) {
@@ -18,6 +22,8 @@ export default class DisplayItem extends Component {
          items: [],
       }
     }
+
+    
 
     componentDidMount() {
         Axios
@@ -32,13 +38,20 @@ export default class DisplayItem extends Component {
         })
     }
 
-  render() {
+    
+
+  render(id) {
+
+    
     const { items } = this.state
     return (
         <>
 
+<Link to={`/detail/`} style={{ textDecoration: "none", marginRight:'2rem'}} key={id}>
 
         <div style={styles.cardcontainer}>
+            
+
             {items && items.map((items, index) => (
 
         <Card style={{ width: '18rem',  marginRight: '28px' }} >
@@ -57,7 +70,8 @@ export default class DisplayItem extends Component {
         ))}
 
         </div>
-        
+        </Link>
+
         </>
     )
   }

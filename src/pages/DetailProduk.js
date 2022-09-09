@@ -2,7 +2,6 @@ import {Button} from 'react-bootstrap';
 import NavbarTab from '../components/Navbar';
 // import Item1 from '../assets/item 1.png';
 // import dataProduct from '../dataProducts/product';
-
 import React, { Component } from 'react';
 import { API_URL } from '../utils/constants';
 import Axios from 'axios';
@@ -19,7 +18,7 @@ export default class DetailProduk extends Component {
 
       componentDidMount() {
         Axios
-        .get(API_URL + "products")
+        .get(API_URL + "products/"+1)
         .then(res => {
             console.log("Response :", res);
             const lists = res.data;
@@ -31,14 +30,14 @@ export default class DetailProduk extends Component {
     }
 
 
-  render() {
+  render(id) {
     const { lists } = this.state
     return (
         <div style={{height: '100vh'}}>
         <NavbarTab />
     
         {lists && lists.map((lists, index) => (
-        <div style={styles.detailContainer}>
+        <div style={styles.detailContainer} key={id}>
         
             <div>
                 <img src={"assets/" + lists.image} style={styles.imgDetail} alt=''/>
@@ -53,7 +52,9 @@ export default class DetailProduk extends Component {
     
                 <p style={{fontSize: '22px', color: 'rgba(151, 74, 74, 1)', textAlign: 'right', marginBottom: '35px' }}>{lists.price}</p>
     
-                    <Button style={styles.btn}>Primary</Button>
+                    <Button style={styles.btn} href='/myCart'>
+                    Add to Cart
+                    </Button>
             </div>
              
         </div>

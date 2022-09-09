@@ -7,7 +7,7 @@ export default function NavbarTab() {
   return (
     <Navbar bg="light" expand="lg" style={styles.navbar}>
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
             <img src={Logo} alt=''/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

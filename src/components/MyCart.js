@@ -1,4 +1,4 @@
-import Item from '../assets/item 1.png';
+import Item from '../assets/item_1.png';
 import Trash from '../assets/trash.png';
 import { Button } from 'react-bootstrap';
 
@@ -13,7 +13,7 @@ export default class MyCart extends Component {
       
         this.state = {
            carts: [],
-           
+
         }
       }
 
@@ -31,7 +31,6 @@ export default class MyCart extends Component {
     }
 
   render() {
-    const { lists } = this.state
     return (
         <div>
 
@@ -106,7 +105,7 @@ export default class MyCart extends Component {
 
             </div>
 
-            <Button style={{float: 'right', width: '240px', backgroundColor: 'rgba(97, 61, 43, 1)', border: 'none', marginTop: '38px', marginRight: '15px'}}>Primary</Button>
+            <Button style={{float: 'right', width: '240px', backgroundColor: 'rgba(97, 61, 43, 1)', border: 'none', marginTop: '38px', marginRight: '15px'}}>Pay</Button>
 
         </div>
         

@@ -1,6 +1,6 @@
 import React from 'react';
 import Qr from '../assets/qr.png';
-import Item1 from '../assets/item 1.png';
+import Item1 from '../assets/item_1.png';
 import Logo from '../assets/icon.png';
 import { Button } from 'react-bootstrap';
 
